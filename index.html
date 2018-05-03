@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+
+<div class="vue">
+    <p v-if="show_text" >Texto</p> <!-- Directive with values -->
+    <button v-if="!show_text" v-on:click="show_text=true" >Show Text</button>
+    <button v-if="show_text" v-on:click="show_text=false" >Remove Text</button>
+
+    <h1>{{ message }}</h1>
+    <button v-on:click="message='Message Updated'" >Update message</button> <!-- Directive with params -->
+
+    <img width="100px" v-bind:src="src"> <!-- Directive with arguments -->
+
+    <h1>{{ message_input_show }}</h1>
+    <input type="text" v-on:keyup.enter="message_input_show=message_input" v-model:value="message_input"> <!-- Directive with modifiers -->
+</div>
+
+<script src="vue.js"></script>
+</body>
+</html>
