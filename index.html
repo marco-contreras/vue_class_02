@@ -9,17 +9,101 @@
 <body>
 
 <div class="vue">
-    <p v-if="show_text" >Texto</p> <!-- Directive with values -->
-    <button v-if="!show_text" v-on:click="show_text=true" >Show Text</button>
-    <button v-if="show_text" v-on:click="show_text=false" >Remove Text</button>
+    <p v-if="show_text">Texto</p> <!-- Directive with values -->
+    <button v-if="!show_text" v-on:click="show_text=true">Show Text</button>
+    <button v-if="show_text" v-on:click="show_text=false">Remove Text</button>
 
     <h1>{{ message }}</h1>
-    <button v-on:click="message='Message Updated'" >Update message</button> <!-- Directive with params -->
+    <button v-on:click="message='Message Updated'">Update message</button> <!-- Directive with params -->
 
     <img width="100px" v-bind:src="src"> <!-- Directive with arguments -->
 
     <h1>{{ message_input_show }}</h1>
-    <input type="text" v-on:keyup.enter="message_input_show=message_input" v-model:value="message_input"> <!-- Directive with modifiers -->
+    <input type="text" v-on:keyup.enter="message_input_show=message_input" v-model:value="message_input">
+    <!-- Directive with modifiers -->
+
+    <hr>
+    <h1>Directiva v-bind</h1>
+    <img width="200px" v-bind:src="image">
+
+    <h2>Directiva v-bind forma corta :</h2>
+    <img width="200px" :src="image">
+
+    <hr>
+    <h1>Directiva v-text</h1>
+    <p v-text="text"></p>
+
+    <h2>Directiva v-text es como usar { { text } }</h2>
+    <p>{{ text }}</p>
+
+    <hr>
+    <h1>Directiva v-html</h1>
+    <p v-html="html_text"></p>
+
+    <h2>Directiva v-interpolada</h2>
+    <p>{{ html_text }}</p>
+
+    <hr>
+
+    <hr>
+    <h1>Directiva v-if v-else</h1>
+    <p v-if="show_p_1">Este es el parrafo 1</p>
+    <p v-else>Este es el parrafo 2</p>
+
+    <button v-on:click="show_p_1=!show_p_1">Cambiar parrafo</button>
+
+    <h2>If con etiqueta template</h2>
+    <template v-if="show_p_1">
+        <p>Esta agrupacion solo se muestra si</p>
+        <p>parrafo 1 es activo y la etiqueta template nunca se despliega.</p>
+    </template>
+
+    <h2>Directiva v-if-else</h2>
+    <p v-if="parrafo_x == 1">Este es el parrafo x1</p>
+    <p v-else-if="parrafo_x == 2">Este es el parrafo x2</p>
+    <p v-else-if="parrafo_x == 3">Este es el parrafo x3</p>
+    <p v-else>Este es el parrafo xn</p>
+
+    <button v-on:click="parrafo_x++">Siguiente Parrafo</button>
+
+    <hr>
+    <h1>Directiva v-show</h1>
+    <p v-show="show_p">Este es el parrafo se esconde con css</p>
+    <button v-on:click="show_p = !show_p">{{ show_p_message }}</button>
+
+    <hr>
+    <h1>Directiva v-for</h1>
+    <ul>
+        <li v-for="country in countries">{{ country }}</li>
+    </ul>
+
+    <h2>Directiva v-for with of</h2>
+    <ul>
+        <li v-for="country of country_objs">{{ country.name }}</li>
+    </ul>
+
+    <h2>Directiva v-for with objects</h2>
+    <ul>
+        <li v-for="country in country_objs">{{ country.name }}</li>
+    </ul>
+
+    <h2>Directiva v-for with indice</h2>
+    <ul>
+        <li v-for="(country, index) in country_objs">{{ index }} - {{ country.name }}</li>
+    </ul>
+
+    <h2>Directiva v-for with key in obejects</h2>
+    <ul>
+        <li v-for="(value, key) in country_obj">{{ key }} -> {{ value }}</li>
+    </ul>
+
+    <h2>Directiva v-for with template</h2>
+    <ul>
+        <template v-for="(country, index) in country_objs">
+            <hr>
+            <li>{{ index }} - {{ country.name }}</li>
+        </template>
+    </ul>
 </div>
 
 <script src="vue.js"></script>
